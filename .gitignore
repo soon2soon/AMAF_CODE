@@ -15,6 +15,11 @@ env/
 .vscode/
 .idea/
 
+# Non-release archival material
+legacy/
+*.ipynb
+.ipynb_checkpoints/
+
 # Generated experiment and paper artifacts
 outputs/
 paper_figures/
