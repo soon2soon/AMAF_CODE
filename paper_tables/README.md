@@ -1,20 +1,20 @@
-# Frozen derived paper tables
+# Paper tables
 
-This directory contains the derived numerical artifacts selected for the
-public code release.
+This directory contains the derived data released with the paper. The tables
+are organized by use rather than by the script that produced them.
 
-- `canonical/`: per-seed, aggregate, paired, and diagnostic summary tables.
-- `results_handoff_20260915/`: Results/Appendix tables aligned with the main
-  figures.
-- `results_handoff_sac_20260915/`: matched primary-five SAC comparison.
-- `discussion_handoff_20260915/`: mechanism, robustness, trade-off, and claim
-  boundary tables.
+| Directory | Contents |
+| --- | --- |
+| `canonical/` | Per-seed results, aggregate statistics, paired comparisons, and diagnostics |
+| `results_handoff_20260915/` | Values used in the main Results figures and tables |
+| `results_handoff_sac_20260915/` | Primary-five TD3, AMAF, and SAC comparison |
+| `discussion_handoff_20260915/` | Mechanism summaries, robustness checks, and claim boundaries |
 
-The statistical experimental unit is the seed. Evaluation episodes and crop
-episodes are not treated as independent replicates. Metric definitions,
-bootstrap parameters, comparison directions, and limitations are documented
-inside the handoff directories.
+The seed is the experimental unit. Evaluation episodes, training episodes, and
+logged checkpoints are not treated as independent replicates. Confidence
+intervals for seed-level means use a 95% percentile bootstrap with 100,000
+resamples and RNG seed 20260907.
 
-The raw frozen trajectories used to derive these files are deliberately not
-duplicated in this code repository. The derivation source remains under
-`analysis/`, and every released CSV/TSV is covered by `DATA_SHA256SUMS`.
+The public repository contains derived tables, not the full raw trajectory
+archive. `DATA_SHA256SUMS` records the checksum of every released CSV and TSV.
+The analysis code is available under `analysis/`.
