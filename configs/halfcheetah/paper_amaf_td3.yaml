@@ -1,0 +1,9 @@
+base: ../base/td3.yaml
+algorithm: td3
+critic_type: paper_amaf
+n_heads: 4
+gate_hidden_dim: 128
+gate_mode: adaptive
+environment:
+  id: HalfCheetah-v5
+  kwargs: {}

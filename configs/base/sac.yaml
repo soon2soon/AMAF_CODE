@@ -1,0 +1,25 @@
+runner: gym_continuous
+algorithm: sac
+device: auto
+deterministic_torch: false
+gamma: 0.99
+tau: 0.005
+auto_alpha: true
+alpha: 0.2
+optimizer:
+  lr: 0.0003
+replay:
+  capacity: 1000000
+  batch_size: 256
+training:
+  total_steps: 1000000
+  random_steps: 25000
+  updates_per_step: 1
+  treat_truncation_as_done: false
+evaluation:
+  enabled: true
+  interval_steps: 10000
+  episodes: 10
+logging:
+  train_interval_updates: 100
+checkpoint_interval_steps: 100000

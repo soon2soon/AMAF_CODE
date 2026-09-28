@@ -1,0 +1,11 @@
+name: crop_anchored_dev
+
+seeds: [11, 22, 33, 44, 55]
+
+algorithms:
+  - name: amaf_anchored_dqn
+    config: ../../configs/crop/amaf_anchored_dqn.yaml
+
+analysis:
+  final_window: 100
+  comparison_metric: final_window_mean

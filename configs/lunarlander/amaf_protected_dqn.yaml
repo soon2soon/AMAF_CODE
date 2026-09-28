@@ -1,0 +1,20 @@
+base: amaf_dqn.yaml
+
+algorithm: amaf_protected_dqn
+
+network:
+  hidden_dim: 128
+  n_heads: 4
+  gate_mode: adaptive
+  trust_init: 0.1
+
+epsilon:
+  start: 1.0
+  end: 0.01
+  decay: 0.995
+  schedule: step_exponential
+  decay_steps: 500000
+
+training:
+  max_episodes: 10000
+  total_steps: 500000

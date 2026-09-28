@@ -1,0 +1,30 @@
+runner: gym_discrete
+device: auto
+deterministic_torch: false
+gamma: 0.99
+target_mode: double_dqn
+learn_start: 1000
+train_every: 1
+target_update_interval: 1000
+gradient_clip: 10.0
+optimizer:
+  lr: 0.001
+  weight_decay: 0.0
+replay:
+  capacity: 100000
+  batch_size: 64
+epsilon:
+  start: 1.0
+  end: 0.01
+  decay: 0.995
+training:
+  max_episodes: 1000
+  total_steps: 500000
+evaluation:
+  enabled: true
+  interval_steps: 10000
+  episodes: 10
+logging:
+  train_interval_updates: 100
+  diagnostic_interval_steps: 5000
+checkpoint_interval_steps: 50000

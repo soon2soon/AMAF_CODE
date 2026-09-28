@@ -1,0 +1,2 @@
+base: paper_amaf_td3.yaml
+gate_mode: uniform

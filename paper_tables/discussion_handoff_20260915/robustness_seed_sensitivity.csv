@@ -1,0 +1,142 @@
+environment,comparison,metric,excluded_seed,loo_mean_delta,loo_median_delta,loo_wins,sign_of_mean
+Lunar,Protected - Naive,last5_return,NONE,84.5584484910084,5.822710240815653,6,positive
+Lunar,Protected - Naive,last5_return,11,93.33220760732937,6.050804037511625,5,positive
+Lunar,Protected - Naive,last5_return,22,88.65894056874555,5.59461644411968,5,positive
+Lunar,Protected - Naive,last5_return,33,95.80249224888053,6.050804037511625,6,positive
+Lunar,Protected - Naive,last5_return,44,52.802406560372056,5.59461644411968,5,positive
+Lunar,Protected - Naive,last5_return,55,99.09235189177255,6.050804037511625,6,positive
+Lunar,Protected - Naive,last5_return,66,93.28152009695249,5.59461644411968,5,positive
+Lunar,Protected - Naive,last5_return,77,94.71810160280353,6.050804037511625,6,positive
+Lunar,Protected - Naive,last5_return,88,97.83984373243314,6.050804037511625,6,positive
+Lunar,Protected - Naive,last5_return,99,74.62773666269166,5.59461644411968,5,positive
+Lunar,Protected - Naive,last5_return,111,55.42888393810311,5.59461644411968,5,positive
+Lunar,Protected - Naive,retention_pct,NONE,29.600847255925963,1.7594660076860578,5,positive
+Lunar,Protected - Naive,retention_pct,11,33.159708643456305,4.201127099107481,5,positive
+Lunar,Protected - Naive,retention_pct,22,31.79786201868678,-0.6821950837353654,4,positive
+Lunar,Protected - Naive,retention_pct,33,33.7129561665817,4.201127099107481,5,positive
+Lunar,Protected - Naive,retention_pct,44,17.155113921384707,-0.6821950837353654,4,positive
+Lunar,Protected - Naive,retention_pct,55,34.32971205726779,4.201127099107481,5,positive
+Lunar,Protected - Naive,retention_pct,66,32.42303838446134,-0.6821950837353654,4,positive
+Lunar,Protected - Naive,retention_pct,77,32.96562973811055,4.201127099107481,5,positive
+Lunar,Protected - Naive,retention_pct,88,33.91779152662222,4.201127099107481,5,positive
+Lunar,Protected - Naive,retention_pct,99,27.89041269975338,-0.6821950837353654,4,positive
+Lunar,Protected - Naive,retention_pct,111,18.656247402934824,-0.6821950837353654,4,positive
+Lunar,Protected - Uniform,last5_return,NONE,-5.052483244719963,-8.090691402618546,3,negative
+Lunar,Protected - Uniform,last5_return,11,-5.4445577887526895,-13.976926479263028,3,negative
+Lunar,Protected - Uniform,last5_return,22,-4.060878440881845,-2.204456325974064,3,negative
+Lunar,Protected - Uniform,last5_return,33,-5.368930680136174,-13.976926479263028,3,negative
+Lunar,Protected - Uniform,last5_return,44,-6.4299271487193055,-13.976926479263028,2,negative
+Lunar,Protected - Uniform,last5_return,55,-0.8882367510902454,-2.204456325974064,3,negative
+Lunar,Protected - Uniform,last5_return,66,-9.932347818459984,-13.976926479263028,2,negative
+Lunar,Protected - Uniform,last5_return,77,-7.54800430776577,-13.976926479263028,2,negative
+Lunar,Protected - Uniform,last5_return,88,-2.956839210004208,-2.204456325974064,3,negative
+Lunar,Protected - Uniform,last5_return,99,-3.8612248746075264,-2.204456325974064,3,negative
+Lunar,Protected - Uniform,last5_return,111,-4.033885426781881,-2.204456325974064,3,negative
+Lunar,Protected - Uniform,retention_pct,NONE,-1.2582589660520256,-1.5493846403174771,5,negative
+Lunar,Protected - Uniform,retention_pct,11,-1.5031597947409001,-4.0446177727828,4,negative
+Lunar,Protected - Uniform,retention_pct,22,-0.9486635430819396,0.9458484921478458,5,negative
+Lunar,Protected - Uniform,retention_pct,33,-1.5606176310864979,-4.0446177727828,4,negative
+Lunar,Protected - Uniform,retention_pct,44,-1.955719731003842,-4.0446177727828,4,negative
+Lunar,Protected - Uniform,retention_pct,55,0.04823044203061658,0.9458484921478458,5,positive
+Lunar,Protected - Uniform,retention_pct,66,-2.5604148603243555,-4.0446177727828,4,negative
+Lunar,Protected - Uniform,retention_pct,77,-2.199907328057593,-4.0446177727828,4,negative
+Lunar,Protected - Uniform,retention_pct,88,-0.43598154931510336,0.9458484921478458,5,negative
+Lunar,Protected - Uniform,retention_pct,99,-0.9443877895358683,0.9458484921478458,5,negative
+Lunar,Protected - Uniform,retention_pct,111,-0.5219678754047723,0.9458484921478458,5,negative
+Crop,Anchored - Uniform,final100_return,NONE,-60.07748252270485,-92.85410261474601,1,negative
+Crop,Anchored - Uniform,final100_return,11,-51.88332749969456,-97.06625430847117,1,negative
+Crop,Anchored - Uniform,final100_return,22,-47.73453266052232,-88.7686646301267,1,negative
+Crop,Anchored - Uniform,final100_return,33,-53.92604649200422,-101.15169229309049,1,negative
+Crop,Anchored - Uniform,final100_return,44,-44.10278017730684,-88.7686646301267,1,negative
+Crop,Anchored - Uniform,final100_return,55,-102.74072578399631,-101.15169229309049,0,negative
+Crop,Anchored - Uniform,yield100,NONE,-495.4726741943365,-736.1019152832032,1,negative
+Crop,Anchored - Uniform,yield100,11,-435.3153639221198,-719.6946789550793,1,negative
+Crop,Anchored - Uniform,yield100,22,-406.5698269653326,-676.953573608399,1,negative
+Crop,Anchored - Uniform,yield100,33,-464.8895347595219,-778.8430206298835,1,negative
+Crop,Anchored - Uniform,yield100,44,-413.9448112487796,-676.953573608399,1,negative
+Crop,Anchored - Uniform,yield100,55,-756.6438340759285,-778.8430206298835,0,negative
+Crop,Anchored - Uniform,nitrogen_saving,NONE,9.52,6.799999999999983,5,positive
+Crop,Anchored - Uniform,nitrogen_saving,11,11.100000000000001,8.199999999999989,4,positive
+Crop,Anchored - Uniform,nitrogen_saving,22,6.199999999999996,6.0,4,positive
+Crop,Anchored - Uniform,nitrogen_saving,33,9.5,6.0,4,positive
+Crop,Anchored - Uniform,nitrogen_saving,44,10.200000000000003,7.400000000000006,4,positive
+Crop,Anchored - Uniform,nitrogen_saving,55,10.599999999999994,8.199999999999989,4,positive
+Crop,Anchored - Uniform,irrigation_saving,NONE,9.467999999999995,7.260000000000019,5,positive
+Crop,Anchored - Uniform,irrigation_saving,11,7.169999999999995,6.150000000000006,4,positive
+Crop,Anchored - Uniform,irrigation_saving,22,10.019999999999989,10.319999999999993,4,positive
+Crop,Anchored - Uniform,irrigation_saving,33,10.574999999999996,11.430000000000007,4,positive
+Crop,Anchored - Uniform,irrigation_saving,44,11.64,11.430000000000007,4,positive
+Crop,Anchored - Uniform,irrigation_saving,55,7.934999999999995,6.150000000000006,4,positive
+HalfCheetah,AMAF - TD3,terminal_delta,NONE,68.72120994776633,528.1650684967553,8,positive
+HalfCheetah,AMAF - TD3,terminal_delta,11,251.26560026896388,630.5364830810013,8,positive
+HalfCheetah,AMAF - TD3,terminal_delta,22,53.80886934751147,630.5364830810013,7,positive
+HalfCheetah,AMAF - TD3,terminal_delta,33,-45.49028473634846,425.7936539125094,7,negative
+HalfCheetah,AMAF - TD3,terminal_delta,44,29.046493951683765,630.5364830810013,7,positive
+HalfCheetah,AMAF - TD3,terminal_delta,55,-93.21480798648817,425.7936539125094,7,negative
+HalfCheetah,AMAF - TD3,terminal_delta,66,6.297290710740223,425.7936539125094,7,positive
+HalfCheetah,AMAF - TD3,terminal_delta,77,492.6476842556246,630.5364830810013,8,positive
+HalfCheetah,AMAF - TD3,terminal_delta,88,-32.57724076477401,425.7936539125094,7,negative
+HalfCheetah,AMAF - TD3,terminal_delta,99,-32.10571480778607,425.7936539125094,7,negative
+HalfCheetah,AMAF - TD3,terminal_delta,111,57.53420923853608,630.5364830810013,7,positive
+HalfCheetah,AMAF - TD3,gain_delta,NONE,375.13168500901565,253.12970275448606,8,positive
+HalfCheetah,AMAF - TD3,gain_delta,11,332.2786725289104,227.39967084256568,7,positive
+HalfCheetah,AMAF - TD3,gain_delta,22,227.24133986913273,227.39967084256568,7,positive
+HalfCheetah,AMAF - TD3,gain_delta,33,298.36928535961033,227.39967084256568,7,positive
+HalfCheetah,AMAF - TD3,gain_delta,44,391.54635324973225,278.85973466640644,7,positive
+HalfCheetah,AMAF - TD3,gain_delta,55,455.7367591873797,278.85973466640644,8,positive
+HalfCheetah,AMAF - TD3,gain_delta,66,385.82856838041664,227.39967084256568,7,positive
+HalfCheetah,AMAF - TD3,gain_delta,77,475.6107056698103,278.85973466640644,8,positive
+HalfCheetah,AMAF - TD3,gain_delta,88,415.2819560538708,278.85973466640644,7,positive
+HalfCheetah,AMAF - TD3,gain_delta,99,358.24732498414465,227.39967084256568,7,positive
+HalfCheetah,AMAF - TD3,gain_delta,111,411.1758848071486,278.85973466640644,7,positive
+HalfCheetah,AMAF - TD3,last5_delta,NONE,-51.13601668410884,428.6687709015332,7,negative
+HalfCheetah,AMAF - TD3,last5_delta,11,156.9383069954844,493.32541786617185,7,positive
+HalfCheetah,AMAF - TD3,last5_delta,22,-91.68065717489299,493.32541786617185,6,negative
+HalfCheetah,AMAF - TD3,last5_delta,33,-155.49883975392711,364.01212393689457,6,negative
+HalfCheetah,AMAF - TD3,last5_delta,44,-111.63173163414002,364.01212393689457,6,negative
+HalfCheetah,AMAF - TD3,last5_delta,55,-220.80344192062046,364.01212393689457,6,negative
+HalfCheetah,AMAF - TD3,last5_delta,66,-40.31117354134262,493.32541786617185,7,negative
+HalfCheetah,AMAF - TD3,last5_delta,77,352.81661927530575,493.32541786617185,7,positive
+HalfCheetah,AMAF - TD3,last5_delta,88,-154.89858169929013,364.01212393689457,6,negative
+HalfCheetah,AMAF - TD3,last5_delta,99,-149.02707952344483,364.01212393689457,6,negative
+HalfCheetah,AMAF - TD3,last5_delta,111,-97.26358786422033,493.32541786617185,6,negative
+HalfCheetah,AMAF - TD3,last10_delta,NONE,-81.64857715880353,392.80351773285474,7,negative
+HalfCheetah,AMAF - TD3,last10_delta,11,131.33414493952537,417.1530457752924,7,positive
+HalfCheetah,AMAF - TD3,last10_delta,22,-114.20595221060911,417.1530457752924,6,negative
+HalfCheetah,AMAF - TD3,last10_delta,33,-180.15819381000216,368.4539896904171,6,negative
+HalfCheetah,AMAF - TD3,last10_delta,44,-131.6599734753836,417.1530457752924,6,negative
+HalfCheetah,AMAF - TD3,last10_delta,55,-246.69618600931224,368.4539896904171,6,negative
+HalfCheetah,AMAF - TD3,last10_delta,66,-79.46651757773078,417.1530457752924,7,negative
+HalfCheetah,AMAF - TD3,last10_delta,77,307.1526250956926,417.1530457752924,7,positive
+HalfCheetah,AMAF - TD3,last10_delta,88,-179.97044908768072,368.4539896904171,6,negative
+HalfCheetah,AMAF - TD3,last10_delta,99,-185.74428974549826,368.4539896904171,6,negative
+HalfCheetah,AMAF - TD3,last10_delta,111,-137.0709797070364,368.4539896904171,6,negative
+HalfCheetah,AMAF - TD3,auc_delta,NONE,-140.78519875274543,274.74982520612684,7,negative
+HalfCheetah,AMAF - TD3,auc_delta,11,54.22287496355188,428.2823279399654,7,positive
+HalfCheetah,AMAF - TD3,auc_delta,22,-35.50197133616631,428.2823279399654,7,negative
+HalfCheetah,AMAF - TD3,auc_delta,33,-169.89658999997138,428.2823279399654,6,negative
+HalfCheetah,AMAF - TD3,auc_delta,44,-226.72395174302196,121.21732247228829,6,negative
+HalfCheetah,AMAF - TD3,auc_delta,55,-335.7317541768104,121.21732247228829,6,negative
+HalfCheetah,AMAF - TD3,auc_delta,66,-221.47377906444893,121.21732247228829,6,negative
+HalfCheetah,AMAF - TD3,auc_delta,77,188.2974759474369,428.2823279399654,7,positive
+HalfCheetah,AMAF - TD3,auc_delta,88,-287.1409371150118,121.21732247228829,6,negative
+HalfCheetah,AMAF - TD3,auc_delta,99,-169.8884310621878,428.2823279399654,6,negative
+HalfCheetah,AMAF - TD3,auc_delta,111,-204.0149239408244,121.21732247228829,6,negative
+SAC context,AMAF - SAC,terminal_delta,NONE,266.4787538467623,-234.64037250944784,2,positive
+SAC context,AMAF - SAC,terminal_delta,11,792.5938810841026,595.4238592686088,2,positive
+SAC context,AMAF - SAC,terminal_delta,22,391.7585354358148,557.7489107564415,2,positive
+SAC context,AMAF - SAC,terminal_delta,33,-239.28107652479093,-272.3153210216151,1,negative
+SAC context,AMAF - SAC,terminal_delta,44,-23.273580453213526,-272.3153210216151,1,negative
+SAC context,AMAF - SAC,terminal_delta,55,410.5960096918984,595.4238592686088,2,positive
+SAC context,AMAF - SAC,gain_delta,NONE,850.1797832682598,814.7055574933074,5,positive
+SAC context,AMAF - SAC,gain_delta,11,915.7988703094293,929.5227937009759,4,positive
+SAC context,AMAF - SAC,gain_delta,22,676.6819086080245,701.2044962984446,4,positive
+SAC context,AMAF - SAC,gain_delta,33,997.7300761036836,929.5227937009759,4,positive
+SAC context,AMAF - SAC,gain_delta,44,801.6397216081637,701.2044962984446,4,positive
+SAC context,AMAF - SAC,gain_delta,55,859.0483397119979,816.021732506113,4,positive
+SAC context,AMAF - SAC,auc_delta,NONE,-427.3206747751416,-688.3521331789016,2,negative
+SAC context,AMAF - SAC,auc_delta,11,-12.214443497226512,-1.035460217985019,2,negative
+SAC context,AMAF - SAC,auc_delta,22,-162.83917638615435,-1.035460217985019,2,negative
+SAC context,AMAF - SAC,auc_delta,33,-893.7657971634655,-1086.799400754996,1,negative
+SAC context,AMAF - SAC,auc_delta,44,-705.7211466546598,-1086.799400754996,1,negative
+SAC context,AMAF - SAC,auc_delta,55,-362.06281017420156,-399.48272779407944,2,negative

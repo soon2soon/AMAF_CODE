@@ -1,0 +1,31 @@
+name: lunarlander_fixed500k
+
+seeds: [11, 22, 33, 44, 55, 66, 77, 88, 99, 111]
+
+algorithms:
+  - name: dqn
+    config: ../../configs/lunarlander/dqn.yaml
+
+  - name: dueling_dqn
+    config: ../../configs/lunarlander/dueling_dqn.yaml
+
+  - name: amaf_single
+    config: ../../configs/lunarlander/amaf_single.yaml
+
+  - name: amaf_uniform
+    config: ../../configs/lunarlander/amaf_uniform.yaml
+
+  - name: amaf_dqn
+    config: ../../configs/lunarlander/amaf_dqn.yaml
+
+analysis:
+  final_window: 100
+  threshold: 200
+  comparison_metric: final_window_mean
+  comparison_pairs:
+    - [amaf_dqn, dqn]
+    - [amaf_dqn, dueling_dqn]
+    - [amaf_dqn, amaf_single]
+    - [amaf_dqn, amaf_uniform]
+    - [amaf_uniform, amaf_single]
+    - [amaf_uniform, dueling_dqn]

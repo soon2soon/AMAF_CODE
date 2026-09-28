@@ -1,0 +1,6 @@
+name: halfcheetah_sac_1p5m_fresh
+seeds: [11, 22, 33, 44, 55]
+
+algorithms:
+  - name: sac
+    config: ../../configs/halfcheetah/sac_1p5m_fresh.yaml

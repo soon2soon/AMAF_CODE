@@ -1,0 +1,4 @@
+# Do NOT blindly install this into the known-good gym-DSSAT environment.
+# Capture the environment first, then install only missing packages.
+-r requirements-core.txt
+transformers>=4.40,<5

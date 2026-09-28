@@ -1,0 +1,10 @@
+name: head_count_ablation
+seeds: [11, 22, 33, 44, 55]
+algorithms:
+  - {name: heads_1, config: ../../configs/halfcheetah/paper_amaf_td3.yaml, overrides: {n_heads: 1}}
+  - {name: heads_2, config: ../../configs/halfcheetah/paper_amaf_td3.yaml, overrides: {n_heads: 2}}
+  - {name: heads_3, config: ../../configs/halfcheetah/paper_amaf_td3.yaml, overrides: {n_heads: 3}}
+  - {name: heads_4, config: ../../configs/halfcheetah/paper_amaf_td3.yaml, overrides: {n_heads: 4}}
+analysis:
+  final_window: 100
+  comparison_metric: final_performance

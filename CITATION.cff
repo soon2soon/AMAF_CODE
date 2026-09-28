@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this software or its derived result tables, please cite the AMAF paper."
+title: "AMAF Research Code"
+type: software
+version: 0.1.0
+date-released: 2026-09-28
+authors:
+  - family-names: Kim
+    given-names: Seongsoon
+  - family-names: Kim
+    given-names: Seongchan
+repository-code: "https://github.com/soon2soon/AMAF_CODE"
+license: MIT

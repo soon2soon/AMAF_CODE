@@ -1,0 +1,6 @@
+base: ../base/td3.yaml
+algorithm: td3
+critic_type: vanilla
+environment:
+  id: HalfCheetah-v5
+  kwargs: {}

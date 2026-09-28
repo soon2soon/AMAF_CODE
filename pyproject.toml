@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "amaf-rl"
+version = "0.1.0"
+description = "Reproducible research framework for Adaptive Multi-View Advantage Fusion (AMAF)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [
+  {name = "Seongsoon Kim"},
+  {name = "Seongchan Kim"}
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "numpy>=1.24,<3",
+  "pandas>=1.5,<3",
+  "PyYAML>=6,<7",
+  "torch>=2.0",
+  "matplotlib>=3.6,<4",
+  "scipy>=1.10,<2",
+]
+
+[project.optional-dependencies]
+gym = [
+  "gymnasium>=1.0,<2",
+  "gymnasium[box2d]>=1.0,<2",
+  "gymnasium[mujoco]>=1.0,<2",
+]
+crop = [
+  "transformers>=4.40,<5",
+]
+dev = [
+  "pytest>=7,<10",
+  "ruff>=0.6",
+]
+all = [
+  "gymnasium>=1.0,<2",
+  "gymnasium[box2d]>=1.0,<2",
+  "gymnasium[mujoco]>=1.0,<2",
+  "transformers>=4.40,<5",
+  "pytest>=7,<10",
+  "ruff>=0.6",
+]
+
+[project.scripts]
+amaf-run = "amaf.cli:main"
+
+[project.urls]
+Repository = "https://github.com/soon2soon/AMAF_CODE"
+Issues = "https://github.com/soon2soon/AMAF_CODE/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

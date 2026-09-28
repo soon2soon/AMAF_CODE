@@ -1,0 +1,24 @@
+record_type,method,comparison,metric,n,mean,median,ci_low,ci_high,wins,losses,ties,direction
+method_summary,TD3,not_applicable,return_1m,5,10622.358863248015,10936.48789658602,9781.663221787703,11302.480115636317,0,0,0,descriptive absolute method metric
+method_summary,TD3,not_applicable,return_1p5m,5,11711.399517728572,11691.411110691975,11239.667118951202,12183.131916505949,0,0,0,descriptive absolute method metric
+method_summary,TD3,not_applicable,gain,5,1089.0406544805587,795.1231435766422,726.0068482853123,1607.4269907836806,0,0,0,descriptive absolute method metric
+method_summary,TD3,not_applicable,last5,5,11676.754237440435,11617.095359788027,11206.572719157446,12146.935755723422,0,0,0,descriptive absolute method metric
+method_summary,TD3,not_applicable,last10,5,11641.361370371817,11696.920181360152,11170.95528815076,12111.76745259287,0,0,0,descriptive absolute method metric
+method_summary,TD3,not_applicable,auc,5,9232.048585727214,9358.8751737645,8636.430873753498,9753.54295157894,0,0,0,descriptive absolute method metric
+method_summary,AMAF,not_applicable,return_1m,5,10275.815883464518,10375.778739757054,9614.313156025344,10896.573329134864,0,0,0,descriptive absolute method metric
+method_summary,AMAF,not_applicable,return_1p5m,5,12046.863049684656,12236.89516518736,11281.5824438891,12589.499311187032,0,0,0,descriptive absolute method metric
+method_summary,AMAF,not_applicable,gain,5,1771.0471662201373,1720.6750370028421,1277.663745770249,2377.559722457885,0,0,0,descriptive absolute method metric
+method_summary,AMAF,not_applicable,last5,5,11926.211524877921,12137.800769053525,11155.92988159299,12436.599364290712,0,0,0,descriptive absolute method metric
+method_summary,AMAF,not_applicable,last10,5,11799.370687802188,12065.37417105057,11017.483549649667,12277.119704886707,0,0,0,descriptive absolute method metric
+method_summary,AMAF,not_applicable,auc,5,9108.733104326111,9059.388137524116,8499.96870125031,9717.497507401913,0,0,0,descriptive absolute method metric
+method_summary,SAC,not_applicable,return_1m,5,10859.516912886016,11527.258681314754,9567.161909579927,11773.592851561649,0,0,0,descriptive absolute method metric
+method_summary,SAC,not_applicable,return_1p5m,5,11780.384295837895,12362.89637836014,10696.635064592052,12832.551810638879,0,0,0,descriptive absolute method metric
+method_summary,SAC,not_applicable,gain,5,920.8673829518775,905.9694795095347,394.63906636517277,1379.1148184294282,0,0,0,descriptive absolute method metric
+method_summary,SAC,not_applicable,last5,5,11862.65211678147,12353.751741586326,10760.84780380467,12674.09380793252,0,0,0,descriptive absolute method metric
+method_summary,SAC,not_applicable,last10,5,11822.043070874022,12370.395481815405,10720.440268209219,12608.772535106857,0,0,0,descriptive absolute method metric
+method_summary,SAC,not_applicable,auc,5,9536.053779101252,10128.655419300756,8525.781117683317,10275.902129571445,0,0,0,descriptive absolute method metric
+paired_effect,not_applicable,AMAF - SAC,terminal_delta,5,266.4787538467623,-234.64037250944784,-906.1168843564421,1596.8104095023616,2,3,0,positive = AMAF higher than SAC
+paired_effect,not_applicable,AMAF - SAC,gain_delta,5,850.1797832682598,814.7055574933074,482.3958601583839,1252.3849921428434,5,0,0,positive = AMAF higher than SAC
+paired_effect,not_applicable,AMAF - SAC,last5_delta,5,63.559408096449985,-226.94014997681916,-1126.233489230029,1317.9090480587474,2,3,0,positive = AMAF higher than SAC
+paired_effect,not_applicable,AMAF - SAC,last10_delta,5,-22.67238307183761,-204.8260713212003,-1226.3455534356278,1306.0687315072835,2,3,0,positive = AMAF higher than SAC
+paired_effect,not_applicable,AMAF - SAC,auc_delta,5,-427.3206747751416,-688.3521331789016,-1566.8673339229372,712.225984372654,2,3,0,positive = AMAF higher than SAC

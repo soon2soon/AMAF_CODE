@@ -1,0 +1,9 @@
+base: ../base/dqn.yaml
+algorithm: amaf_dqn
+environment:
+  id: LunarLander-v3
+  kwargs: {}
+network:
+  hidden_dim: 128
+  n_heads: 4
+  gate_mode: adaptive

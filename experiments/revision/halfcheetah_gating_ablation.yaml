@@ -1,0 +1,16 @@
+name: halfcheetah_gating_ablation
+seeds: [11, 22, 33, 44, 55]
+algorithms:
+  - name: amaf_adaptive
+    config: ../../configs/halfcheetah/paper_amaf_td3.yaml
+  - name: amaf_uniform
+    config: ../../configs/halfcheetah/paper_amaf_uniform.yaml
+  - name: amaf_hard_selector
+    config: ../../configs/halfcheetah/paper_amaf_hard.yaml
+analysis:
+  final_window: 100
+  threshold: 3500
+  comparison_metric: final_performance
+  comparison_pairs:
+    - [amaf_adaptive, amaf_uniform]
+    - [amaf_adaptive, amaf_hard_selector]

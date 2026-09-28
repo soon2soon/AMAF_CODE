@@ -1,0 +1,10 @@
+name: halfcheetah_td3_vs_v2_1p5m_extra5
+
+seeds: [66, 77, 88, 99, 111]
+
+algorithms:
+  - name: td3
+    config: ../../configs/halfcheetah/td3_1p5m_fresh.yaml
+
+  - name: amaf_selective_bp_v2_td3
+    config: ../../configs/halfcheetah/amaf_selective_bp_v2_actor_safe_td3_1p5m_fresh.yaml

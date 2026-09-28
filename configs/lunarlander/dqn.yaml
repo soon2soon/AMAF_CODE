@@ -1,0 +1,7 @@
+base: ../base/dqn.yaml
+algorithm: dqn
+environment:
+  id: LunarLander-v3
+  kwargs: {}
+network:
+  hidden: [128, 128]

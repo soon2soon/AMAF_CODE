@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environments and editors
+.venv/
+venv/
+env/
+.conda/
+.vscode/
+.idea/
+
+# Generated experiment and paper artifacts
+outputs/
+paper_figures/
+*.pt
+*.pth
+*.ckpt
+*.log
+
+# Packaging and OS files
+build/
+dist/
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db

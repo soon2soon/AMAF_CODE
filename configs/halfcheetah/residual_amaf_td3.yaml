@@ -1,0 +1,17 @@
+base: ../base/td3.yaml
+algorithm: td3
+critic_type: residual_amaf
+
+n_heads: 4
+gate_hidden_dim: 128
+gate_mode: adaptive
+
+# AMAF is an additive centered correction to vanilla TD3.
+residual_scale: 1.0
+
+# Start close to vanilla TD3 while keeping different heads.
+head_init_std: 0.001
+
+environment:
+  id: HalfCheetah-v5
+  kwargs: {}

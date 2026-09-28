@@ -1,0 +1,10 @@
+base: amaf_dqn.yaml
+
+algorithm: amaf_anchored_dqn
+
+network:
+  n_heads: 3
+  gate_hidden_dim: 64
+  gate_mode: adaptive
+  fusion_mode: uniform_anchored
+  trust_init: 0.1

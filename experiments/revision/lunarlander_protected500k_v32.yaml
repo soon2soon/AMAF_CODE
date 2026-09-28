@@ -1,0 +1,12 @@
+name: lunarlander_protected500k_v32
+
+seeds: [11, 22, 33, 44, 55, 66, 77, 88, 99, 111]
+
+algorithms:
+  - name: amaf_protected_dqn
+    config: ../../configs/lunarlander/amaf_protected_dqn.yaml
+
+analysis:
+  final_window: 100
+  threshold: 200
+  comparison_metric: final_window_mean

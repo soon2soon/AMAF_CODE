@@ -1,0 +1,40 @@
+runner: gym_continuous
+device: auto
+deterministic_torch: false
+gamma: 0.99
+tau: 0.005
+policy_noise: 0.2
+noise_clip: 0.5
+policy_freq: 2
+optimizer:
+  actor_lr: 0.0003
+  critic_lr: 0.0003
+replay:
+  capacity: 1000000
+  batch_size: 256
+training:
+  total_steps: 1500000
+  random_steps: 25000
+  exploration_noise: 0.1
+  updates_per_step: 1
+  treat_truncation_as_done: false
+evaluation:
+  enabled: true
+  interval_steps: 10000
+  episodes: 10
+logging:
+  train_interval_updates: 100
+  diagnostic_interval_steps: 10000
+checkpoint_interval_steps: 100000
+algorithm: td3
+critic_type: selective_residual_amaf
+n_heads: 4
+gate_hidden_dim: 128
+gate_mode: adaptive
+residual_scale: 1.0
+head_init_std: 0.001
+null_prior: 0.5
+environment:
+  id: HalfCheetah-v5
+  kwargs: {}
+actor_projection: base_safe

@@ -1,0 +1,24 @@
+environment,comparison,metric,n,mean_delta,median_delta,wins,losses,ties,ci_low,ci_high,interpretation_direction
+Lunar,Naive - Uniform,last5_return,10,-89.61093173572837,-1.7012241820317513,5,5,0,-187.9246476232804,-5.200310506755431,positive = Naive higher Last-5
+Lunar,Naive - Uniform,retention_pct,10,-30.85910622197798,0.267583890505378,5,5,0,-67.89010239723228,-0.19922956822583557,positive = Naive higher retention (pp)
+Lunar,Protected - Naive,last5_return,10,84.5584484910084,5.822710240815653,6,4,0,0.03282088556209091,183.01900408188402,positive = Protected higher Last-5
+Lunar,Protected - Naive,retention_pct,10,29.600847255925963,1.7594660076860578,5,5,0,-0.9824735053863977,66.88356321960445,positive = Protected higher retention (pp)
+Lunar,Protected - Uniform,last5_return,10,-5.052483244719963,-8.090691402618546,3,7,0,-18.050943535108956,8.588834664225937,positive = Protected higher Last-5
+Lunar,Protected - Uniform,retention_pct,10,-1.2582589660520256,-1.5493846403174771,5,5,0,-5.652590250352193,3.1671707715706474,positive = Protected higher retention (pp)
+Crop,Anchored - Uniform,final100_return,5,-60.07748252270485,-92.85410261474601,1,4,0,-112.35468395800736,25.8846173962404,positive = Anchored higher final-100 return
+Crop,Anchored - Uniform,yield100,5,-495.4726741943365,-736.1019152832032,1,4,0,-816.2876586914069,35.749320190429536,positive = Anchored higher final-100 yield
+Crop,Anchored - Uniform,nitrogen_saving,5,9.52,6.799999999999983,5,0,0,4.719999999999999,16.4,positive = Anchored uses less nitrogen
+Crop,Anchored - Uniform,irrigation_saving,5,9.467999999999995,7.260000000000019,5,0,0,3.7799999999999896,15.323999999999995,positive = Anchored uses less irrigation
+Crop,Naive - Uniform,final100_return,5,-178.79290396582024,-90.53163953613273,0,5,0,-295.023023040039,-83.29216341503896,positive = Naive higher final-100 return
+Crop,Naive - Uniform,yield100,5,-987.4487592773448,-635.2404516601564,0,5,0,-1513.1850092773452,-470.9221079101575,positive = Naive higher final-100 yield
+Crop,Naive - Uniform,nitrogen_saving,5,-1.2799999999999954,2.3999999999999773,4,1,0,-28.239999999999988,19.84000000000001,positive = Naive uses less nitrogen
+Crop,Naive - Uniform,irrigation_saving,5,-19.848000000000006,-19.200000000000017,1,4,0,-37.152,0.43199999999999933,positive = Naive uses less irrigation
+Crop,Anchored - Naive,final100_return,5,118.7154214431154,-16.426111252441274,2,3,0,-25.82815702343739,279.48504173168965,positive = Anchored higher final-100 return
+Crop,Anchored - Naive,yield100,5,491.97608508300834,-100.8614636230468,2,3,0,-345.36555078124945,1465.0522036132822,positive = Anchored higher final-100 yield
+Crop,Anchored - Naive,nitrogen_saving,5,10.799999999999994,0.8000000000000114,3,2,0,-4.880000000000007,36.319999999999986,positive = Anchored uses less nitrogen
+Crop,Anchored - Naive,irrigation_saving,5,29.316000000000003,32.640000000000015,4,1,0,12.359999999999996,44.760000000000005,positive = Anchored uses less irrigation
+HalfCheetah,AMAF - TD3,terminal_delta,10,68.72120994776633,528.1650684967553,8,2,0,-972.2089293194647,859.9215657717352,positive = AMAF higher than TD3
+HalfCheetah,AMAF - TD3,gain_delta,10,375.13168500901565,253.12970275448606,8,2,0,1.895906653194281,786.4818199397702,positive = AMAF higher than TD3
+HalfCheetah,AMAF - TD3,last5_delta,10,-51.13601668410884,428.6687709015332,7,3,0,-1073.467625483514,745.3650143435814,positive = AMAF higher than TD3
+HalfCheetah,AMAF - TD3,last10_delta,10,-81.64857715880353,392.80351773285474,7,3,0,-1075.7339542444765,697.8546035002903,positive = AMAF higher than TD3
+HalfCheetah,AMAF - TD3,auc_delta,10,-140.78519875274543,274.74982520612684,7,3,0,-1046.5257003016723,651.0987522075158,positive = AMAF higher than TD3

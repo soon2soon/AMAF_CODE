@@ -1,0 +1,22 @@
+base: ../base/td3.yaml
+algorithm: td3
+critic_type: selective_residual_amaf
+
+n_heads: 4
+gate_hidden_dim: 128
+gate_mode: adaptive
+
+# Same scale as the previous Residual-AMAF development run.
+residual_scale: 1.0
+
+# Preserve the previous residual-head initialization.
+head_init_std: 0.001
+
+# Base/Residual-family symmetric prior:
+# P(NULL / TD3 fallback) = 0.5
+# P(residual family)     = 0.5
+null_prior: 0.5
+
+environment:
+  id: HalfCheetah-v5
+  kwargs: {}

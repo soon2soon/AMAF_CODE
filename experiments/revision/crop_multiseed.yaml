@@ -1,0 +1,25 @@
+name: crop_multiseed
+
+seeds: [11, 22, 33, 44, 55]
+
+algorithms:
+  - name: dqn
+    config: ../../configs/crop/dqn.yaml
+
+  - name: dueling_dqn
+    config: ../../configs/crop/dueling_dqn.yaml
+
+  - name: amaf_uniform
+    config: ../../configs/crop/amaf_uniform.yaml
+
+  - name: amaf_dqn
+    config: ../../configs/crop/amaf_dqn.yaml
+
+analysis:
+  final_window: 100
+  comparison_metric: final_window_mean
+  comparison_pairs:
+    - [amaf_dqn, dqn]
+    - [amaf_dqn, dueling_dqn]
+    - [amaf_dqn, amaf_uniform]
+    - [amaf_uniform, dueling_dqn]

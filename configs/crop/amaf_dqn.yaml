@@ -1,0 +1,6 @@
+base: base_revision.yaml
+algorithm: amaf_dqn
+network:
+  n_heads: 3
+  gate_hidden_dim: 64
+  gate_mode: adaptive

@@ -1,0 +1,7 @@
+base: ../base/dqn.yaml
+algorithm: dueling_dqn
+environment:
+  id: LunarLander-v3
+  kwargs: {}
+network:
+  hidden_dim: 128

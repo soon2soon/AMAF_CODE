@@ -1,0 +1,1536 @@
+schema_version: 1
+contract_version: "2026-09-10-v4"
+
+project:
+  name: AMAF
+  purpose: >
+    Canonical analysis and figure contract for manuscript revision.
+    Every manuscript figure must be traceable to canonical or frozen evidence,
+    use seed-level statistical units, and preserve paired experimental structure
+    whenever applicable.
+
+
+# ======================================================================
+# Vocabulary
+# ======================================================================
+
+vocabulary:
+
+  figure_groups:
+    - main
+    - supplementary
+    - draft_live
+
+  statuses:
+    - active
+    - planned
+    - draft
+    - blocked
+    - retired
+
+  dataset_kinds:
+    - canonical_csv
+    - frozen_dir
+    - analysis_csv
+    - live_output
+
+  dataset_lifecycles:
+    - canonical
+    - frozen
+    - planned
+    - live
+    - retired
+
+  uncertainty_methods:
+    - bootstrap_mean
+    - paired_bootstrap_mean
+    - standard_deviation
+    - none
+    - descriptive
+
+  pairings:
+    - none
+    - within_seed
+
+  directions:
+    - higher
+    - lower
+    - descriptive
+    - mixed
+
+
+# ======================================================================
+# Global policy
+# ======================================================================
+
+global_policy:
+
+  experimental_unit_default: seed
+
+  uncertainty_default:
+    method: bootstrap_mean
+    confidence: 0.95
+    resamples: 100000
+    rng_seed: 20260907
+
+  paired_uncertainty_default:
+    method: paired_bootstrap_mean
+    confidence: 0.95
+    resamples: 100000
+    rng_seed: 20260907
+
+  manuscript:
+
+    allowed_groups:
+      - main
+      - supplementary
+
+    forbidden_dataset_kinds:
+      - live_output
+
+    forbidden_dataset_lifecycles:
+      - planned
+      - live
+      - retired
+
+    reject_incomplete_runs: true
+
+  statistics:
+
+    seed_is_primary_experimental_unit: true
+
+    eval_episodes_are_independent_samples: false
+
+    crop_episodes_are_independent_samples: false
+
+    preserve_pairing_when_available: true
+
+    report_raw_seed_observations_when_feasible: true
+
+    report_wins_for_paired_comparisons: true
+
+    avoid_p_value_as_primary_visual_evidence: true
+
+  rendering:
+
+    output_formats:
+      - pdf
+      - png
+      - csv
+      - json
+
+    png_dpi: 400
+    pdf_fonttype: 42
+
+    use_consistent_method_encoding: true
+
+    distinguish_methods_by:
+      - color
+      - marker
+      - linestyle
+
+    prohibit_misleading_axis_truncation: true
+    show_zero_reference_for_delta_plots: true
+
+    smoothing:
+      default: false
+      require_explicit_contract: true
+
+
+# ======================================================================
+# Metric definitions
+# ======================================================================
+
+metrics:
+
+  # --------------------------------------------------------------------
+  # Lunar
+  # --------------------------------------------------------------------
+
+  lunar.final:
+    domain: lunar
+    unit: evaluation_return
+    direction: higher
+    definition: >
+      Mean return at the final evaluation checkpoint at or before
+      500,000 environment steps.
+
+  lunar.last5:
+    domain: lunar
+    unit: evaluation_return
+    direction: higher
+    definition: >
+      Mean of the final five evaluation-checkpoint mean returns.
+
+  lunar.auc:
+    domain: lunar
+    unit: normalized_return_auc
+    direction: higher
+    definition: >
+      Normalized trapezoidal area under the evaluation learning curve
+      using checkpoint mean returns.
+
+  lunar.best5:
+    domain: lunar
+    unit: evaluation_return
+    direction: higher
+    definition: >
+      Mean of the five highest evaluation-checkpoint mean returns.
+
+  lunar.retention_pct:
+    domain: lunar
+    unit: percent
+    direction: higher
+    definition: >
+      100 times Last-5 performance divided by Best-5 performance.
+
+  lunar.final_gt_200:
+    domain: lunar
+    unit: binary
+    direction: higher
+    definition: >
+      Indicator that final evaluation return exceeds 200.
+
+
+  # --------------------------------------------------------------------
+  # Crop
+  # --------------------------------------------------------------------
+
+  crop.full:
+    domain: crop
+    unit: train_return
+    direction: higher
+    definition: >
+      Mean training return over episodes 1 through 3000.
+
+  crop.block100_return:
+    domain: crop
+    unit: train_return
+    direction: higher
+    definition: >
+      Mean training return within each non-overlapping block of 100 episodes.
+      Blocks are computed within each seed before across-seed aggregation;
+      the progress coordinate is the one-based final episode of each block.
+
+  crop.early500:
+    domain: crop
+    unit: train_return
+    direction: higher
+    definition: >
+      Mean training return over the first 500 episodes.
+
+  crop.early1000:
+    domain: crop
+    unit: train_return
+    direction: higher
+    definition: >
+      Mean training return over episodes 1 through 1000.
+
+  crop.mid1000:
+    domain: crop
+    unit: train_return
+    direction: higher
+    definition: >
+      Mean training return over episodes 1001 through 2000.
+
+  crop.late1000:
+    domain: crop
+    unit: train_return
+    direction: higher
+    definition: >
+      Mean training return over episodes 2001 through 3000.
+
+  crop.final500:
+    domain: crop
+    unit: train_return
+    direction: higher
+    definition: >
+      Mean training return over the final 500 episodes.
+
+  crop.final250:
+    domain: crop
+    unit: train_return
+    direction: higher
+    definition: >
+      Mean training return over the final 250 episodes.
+
+  crop.final100:
+    domain: crop
+    unit: train_return
+    direction: higher
+    definition: >
+      Mean training return over the final 100 episodes.
+
+  crop.yield100:
+    domain: crop
+    unit: yield
+    direction: higher
+    definition: >
+      Mean crop yield over the final 100 episodes.
+
+  crop.N100:
+    domain: crop
+    unit: nitrogen
+    direction: lower
+    definition: >
+      Mean nitrogen usage over the final 100 episodes.
+
+  crop.irr100:
+    domain: crop
+    unit: irrigation
+    direction: lower
+    definition: >
+      Mean irrigation usage over the final 100 episodes.
+
+  crop.T800:
+    domain: crop
+    unit: episode
+    direction: lower
+    definition: >
+      First episode at which rolling-100 return reaches 800.
+
+  crop.T900:
+    domain: crop
+    unit: episode
+    direction: lower
+    definition: >
+      First episode at which rolling-100 return reaches 900.
+
+  crop.T1000:
+    domain: crop
+    unit: episode
+    direction: lower
+    definition: >
+      First episode at which rolling-100 return reaches 1000.
+
+
+  # --------------------------------------------------------------------
+  # HalfCheetah
+  # --------------------------------------------------------------------
+
+  halfcheetah.at_1m:
+    domain: halfcheetah
+    unit: evaluation_return
+    direction: higher
+    definition: >
+      Mean evaluation return at exactly 1,000,000 environment steps.
+
+  halfcheetah.at_1p5m:
+    domain: halfcheetah
+    unit: evaluation_return
+    direction: higher
+    definition: >
+      Mean evaluation return at exactly 1,500,000 environment steps.
+
+  halfcheetah.gain_1m_to_1p5m:
+    domain: halfcheetah
+    unit: evaluation_return_change
+    direction: higher
+    definition: >
+      Evaluation return at 1.5M minus evaluation return at 1.0M.
+
+  halfcheetah.last5:
+    domain: halfcheetah
+    unit: evaluation_return
+    direction: higher
+    definition: >
+      Mean of the final five evaluation checkpoint means.
+
+  halfcheetah.last10:
+    domain: halfcheetah
+    unit: evaluation_return
+    direction: higher
+    definition: >
+      Mean of the final ten evaluation checkpoint means.
+
+  halfcheetah.auc_1p5m:
+    domain: halfcheetah
+    unit: normalized_return_auc
+    direction: higher
+    definition: >
+      Normalized trapezoidal area under the evaluation curve through 1.5M.
+
+
+# ======================================================================
+# Dataset registry
+# ======================================================================
+
+datasets:
+
+  # --------------------------------------------------------------------
+  # Lunar canonical data
+  # --------------------------------------------------------------------
+
+  lunar_per_seed:
+    path: paper_tables/canonical/lunar_per_seed.csv
+    kind: canonical_csv
+    lifecycle: canonical
+    manuscript_allowed: true
+
+    required_columns:
+      - experiment
+      - method
+      - seed
+      - final
+      - last5
+      - auc
+      - best5
+      - retention_pct
+      - final_gt_200
+      - checkpoints
+      - max_step
+
+    expected_rows: 50
+
+    expected_unique:
+
+      method:
+        - DQN
+        - Dueling
+        - Uniform
+        - Naive
+        - Protected
+
+      seed:
+        - 11
+        - 22
+        - 33
+        - 44
+        - 55
+        - 66
+        - 77
+        - 88
+        - 99
+        - 111
+
+
+  lunar_aggregate:
+    path: paper_tables/canonical/lunar_aggregate.csv
+    kind: canonical_csv
+    lifecycle: canonical
+    manuscript_allowed: true
+
+    required_columns:
+      - experiment
+      - method
+      - metric
+      - mean
+      - sd
+      - n
+
+
+  lunar_paired_deltas:
+    path: paper_tables/canonical/lunar_paired_deltas.csv
+    kind: canonical_csv
+    lifecycle: canonical
+    manuscript_allowed: true
+
+    required_columns:
+      - experiment
+      - focal
+      - comparator
+      - metric
+      - direction
+
+
+  lunar_primary_frozen:
+    path: paper_data/lunar/primary_20260828
+    kind: frozen_dir
+    lifecycle: frozen
+    manuscript_allowed: true
+
+
+  # IMPORTANT:
+  # The slot is intentionally retained for future integration,
+  # but the payload does NOT currently exist in paper_data.
+  lunar_anchored_v31:
+    path: paper_data/lunar/anchored_v31_primary_20260831
+    kind: frozen_dir
+    lifecycle: planned
+    manuscript_allowed: false
+    optional: true
+
+    note: >
+      Reserved for a future Lunar Anchored-v31 frozen dataset.
+      No frozen payload is currently present in the canonical repository.
+      This source is blocked from manuscript figures until the payload is
+      frozen, validated, catalogued, and canonically integrated.
+
+
+  # --------------------------------------------------------------------
+  # Crop canonical data
+  # --------------------------------------------------------------------
+
+  crop_baseline_primary_frozen:
+    path: paper_data/crop/baseline_primary_20260828
+    kind: frozen_dir
+    lifecycle: frozen
+    manuscript_allowed: true
+
+    note: >
+      Checksum-protected primary Crop runs for DQN, Dueling, Uniform, and
+      Naive. Episode metrics are the frozen progression source used to build
+      the canonical Crop summaries.
+
+
+  crop_anchored_primary_frozen:
+    path: paper_data/crop/anchored_primary_20260830
+    kind: frozen_dir
+    lifecycle: frozen
+    manuscript_allowed: true
+
+    note: >
+      Checksum-protected primary Anchored Crop runs. Episode metrics are the
+      frozen progression source used to build the canonical Crop summaries.
+
+  crop_per_seed:
+    path: paper_tables/canonical/crop_per_seed.csv
+    kind: canonical_csv
+    lifecycle: canonical
+    manuscript_allowed: true
+
+    required_columns:
+      - experiment
+      - method
+      - seed
+      - full
+      - early500
+      - early1000
+      - mid1000
+      - late1000
+      - final500
+      - final250
+      - final100
+      - peak100
+      - peak100_episode
+      - peak250
+      - peak250_episode
+      - yield100
+      - N100
+      - irr100
+      - T800
+      - T900
+      - T1000
+      - episodes
+      - max_env_steps
+
+    expected_rows: 25
+
+    expected_unique:
+
+      method:
+        - DQN
+        - Dueling
+        - Uniform
+        - Naive
+        - Anchored
+
+      seed:
+        - 11
+        - 22
+        - 33
+        - 44
+        - 55
+
+
+  crop_aggregate:
+    path: paper_tables/canonical/crop_aggregate.csv
+    kind: canonical_csv
+    lifecycle: canonical
+    manuscript_allowed: true
+
+    required_columns:
+      - experiment
+      - method
+      - metric
+      - mean
+      - sd
+      - n
+
+
+  crop_performance_paired:
+    path: paper_tables/canonical/crop_performance_paired_deltas.csv
+    kind: canonical_csv
+    lifecycle: canonical
+    manuscript_allowed: true
+
+
+  crop_resource_paired:
+    path: paper_tables/canonical/crop_resource_paired_deltas.csv
+    kind: canonical_csv
+    lifecycle: canonical
+    manuscript_allowed: true
+
+
+  crop_thresholds:
+    path: paper_tables/canonical/crop_thresholds.csv
+    kind: canonical_csv
+    lifecycle: canonical
+    manuscript_allowed: true
+
+
+  crop_anchored_trust:
+    path: paper_tables/canonical/crop_anchored_trust.csv
+    kind: canonical_csv
+    lifecycle: canonical
+    manuscript_allowed: true
+
+
+  # --------------------------------------------------------------------
+  # HalfCheetah canonical data
+  # --------------------------------------------------------------------
+
+  halfcheetah_per_seed:
+    path: paper_tables/canonical/halfcheetah_per_seed.csv
+    kind: canonical_csv
+    lifecycle: canonical
+    manuscript_allowed: true
+
+    required_columns:
+      - experiment
+      - method
+      - seed
+      - at_1m
+      - at_1p5m
+      - gain_1m_to_1p5m
+      - late500k
+      - last5
+      - last10
+      - best
+      - best_step
+      - auc_1p5m
+      - checkpoints
+      - max_step
+
+    expected_rows: 20
+
+    expected_unique:
+
+      method:
+        - TD3
+        - AMAF
+
+      seed:
+        - 11
+        - 22
+        - 33
+        - 44
+        - 55
+        - 66
+        - 77
+        - 88
+        - 99
+        - 111
+
+
+  halfcheetah_aggregate:
+    path: paper_tables/canonical/halfcheetah_aggregate.csv
+    kind: canonical_csv
+    lifecycle: canonical
+    manuscript_allowed: true
+
+
+  halfcheetah_paired:
+    path: paper_tables/canonical/halfcheetah_paired_deltas.csv
+    kind: canonical_csv
+    lifecycle: canonical
+    manuscript_allowed: true
+
+
+  halfcheetah_cohort:
+    path: paper_tables/canonical/halfcheetah_cohort_summary.csv
+    kind: canonical_csv
+    lifecycle: canonical
+    manuscript_allowed: true
+
+
+  halfcheetah_primary_frozen:
+    path: paper_data/halfcheetah/primary_1p5m_20260830
+    kind: frozen_dir
+    lifecycle: frozen
+    manuscript_allowed: true
+
+
+  halfcheetah_replication_frozen:
+    path: paper_data/halfcheetah/replication_extra5_1p5m_20260907
+    kind: frozen_dir
+    lifecycle: frozen
+    manuscript_allowed: true
+
+
+  # --------------------------------------------------------------------
+  # SAC frozen primary-5 baseline
+  # --------------------------------------------------------------------
+
+  halfcheetah_sac_primary5:
+    path: paper_data/halfcheetah/sac_primary5_1p5m_20260910
+    kind: frozen_dir
+    lifecycle: frozen
+    manuscript_allowed: true
+    optional: false
+
+    note: >
+      Completed SAC primary-5 baseline for HalfCheetah.
+      Seeds 11, 22, 33, 44, and 55 reached 1.5M environment
+      steps and were validated, frozen, checksummed, and
+      canonically summarized on 2026-09-10.
+
+
+# ======================================================================
+# Figure contracts
+# ======================================================================
+
+figures:
+
+  # --------------------------------------------------------------------
+  # Lunar main
+  #
+  # Central interpretation:
+  # Naive adaptive specialization can introduce severe seed-dependent
+  # late-stage failures. Protected AMAF mitigates these failures and
+  # restores performance close to the stable Uniform reference on average.
+  #
+  # This figure MUST NOT be framed as Protected uniformly outperforming
+  # Uniform or Naive across seeds.
+  # --------------------------------------------------------------------
+
+  lunar_main:
+    figure_id: LUNAR_MAIN
+    group: main
+    status: active
+    domain: lunar
+
+    builder: analysis.figures.lunar:build_lunar_main
+
+    title: >
+      Failure mitigation while preserving reference-level performance
+
+    experimental_unit: seed
+
+    panels:
+
+      A:
+        status: active
+        kind: learning_curve
+
+        sources:
+          - lunar_primary_frozen
+
+        metrics:
+          - lunar.final
+
+        pairing: none
+
+        aggregation: >
+          Evaluation episodes are first averaged within each checkpoint
+          and seed. Seed-level checkpoint means are then aggregated across
+          the 10 matched seeds.
+
+        uncertainty:
+          method: bootstrap_mean
+          confidence: 0.95
+          resamples: 100000
+          rng_seed: 20260907
+
+        smoothing: false
+
+        message: >
+          Show overall learning dynamics and reveal whether adaptive
+          variants exhibit unstable or collapsing late-stage behavior.
+
+        caveats:
+          - >
+            Evaluation episodes must never be treated as independent
+            statistical samples.
+          - >
+            No smoothing beyond checkpoint-level aggregation is allowed.
+          - >
+            The figure must not imply that one method dominates every metric.
+
+
+      B:
+        status: active
+        kind: seed_distribution
+
+        sources:
+          - lunar_per_seed
+
+        metrics:
+          - lunar.last5
+
+        pairing: none
+
+        uncertainty:
+          method: bootstrap_mean
+          confidence: 0.95
+          resamples: 100000
+          rng_seed: 20260907
+
+        message: >
+          Show absolute late-stage performance across all seeds. The panel
+          should make the heavy negative tail of Naive adaptation visible
+          rather than hiding it behind a group mean.
+
+        visual_requirements:
+          raw_seed_points: required
+          group_mean: required
+          confidence_interval: required
+
+        caveats:
+          - >
+            All 10 seeds must be shown.
+          - >
+            Severe Naive failures must not be removed as outliers.
+          - >
+            Protected should be interpreted relative to both Naive and
+            the stable Uniform reference.
+
+
+      C:
+        status: active
+        kind: paired_rescue
+
+        sources:
+          - lunar_per_seed
+
+        metrics:
+          - lunar.last5
+
+        pairing: within_seed
+
+        focal_method: Protected
+        comparator_method: Naive
+        reference_method: Uniform
+
+        uncertainty:
+          method: paired_bootstrap_mean
+          confidence: 0.95
+          resamples: 100000
+          rng_seed: 20260907
+
+        message: >
+          Show seed-wise Naive-to-Protected change across all matched seeds.
+          The purpose is to identify failure mitigation: Protected strongly
+          rescues a subset of catastrophic Naive failures while producing
+          smaller or mixed changes on already-stable seeds.
+
+        visual_requirements:
+          show_all_pairs: true
+          show_pair_ids: true
+          show_reference_level: true
+          zero_reference_if_delta_view: true
+
+        derived_annotations:
+          gap_recovery_pct:
+            status: descriptive_only
+            definition: >
+              Group-mean recovery of the Uniform-minus-Naive gap by
+              Protected. This quantity may be annotated descriptively but
+              must not be presented as an inferential effect size.
+
+        caveats:
+          - >
+            Failure seeds must not be selected or filtered post hoc;
+            all matched seeds must be displayed.
+          - >
+            Mean and median paired effects should both be available because
+            the effect distribution is strongly asymmetric.
+          - >
+            A large mean rescue effect must not be described as uniform
+            seed-wise improvement.
+
+
+      D:
+        status: active
+        kind: seed_distribution
+
+        sources:
+          - lunar_per_seed
+
+        metrics:
+          - lunar.retention_pct
+
+        pairing: none
+
+        uncertainty:
+          method: bootstrap_mean
+          confidence: 0.95
+          resamples: 100000
+          rng_seed: 20260907
+
+        message: >
+          Show preservation of best-observed performance. Protected is
+          expected to remain close to the Uniform reference on average,
+          while Naive exhibits severe retention failures in some seeds.
+
+        visual_requirements:
+          raw_seed_points: required
+          group_mean: required
+          confidence_interval: required
+
+        caveats:
+          - >
+            Retention must always be interpreted jointly with absolute
+            performance.
+          - >
+            Protected-versus-Naive retention improvement is not uniformly
+            positive across seeds.
+          - >
+            Protected-versus-Uniform retention should be interpreted as
+            approximate reference-level preservation rather than superiority.
+
+
+  # --------------------------------------------------------------------
+  # Lunar supplementary paired effects
+  # --------------------------------------------------------------------
+
+  lunar_paired_effects:
+    figure_id: LUNAR_SUPP_EFFECTS
+    group: supplementary
+    status: active
+    domain: lunar
+
+    builder: analysis.figures.lunar:build_lunar_paired_effects
+
+    experimental_unit: seed
+
+    panels:
+
+      A:
+        status: active
+        kind: paired_delta
+
+        sources:
+          - lunar_paired_deltas
+
+        metrics:
+          - lunar.final
+          - lunar.last5
+          - lunar.auc
+          - lunar.best5
+
+        pairing: within_seed
+
+        uncertainty:
+          method: paired_bootstrap_mean
+          confidence: 0.95
+          resamples: 100000
+          rng_seed: 20260907
+
+        message: >
+          Report Protected-minus-comparator paired performance effects,
+          preserving both effect magnitude and seed-level heterogeneity.
+
+        caveats:
+          - >
+            Protected must not be described as uniformly superior when the
+            paired win count does not support that interpretation.
+
+
+      B:
+        status: active
+        kind: paired_delta
+
+        sources:
+          - lunar_paired_deltas
+
+        metrics:
+          - lunar.retention_pct
+
+        pairing: within_seed
+
+        uncertainty:
+          method: paired_bootstrap_mean
+          confidence: 0.95
+          resamples: 100000
+          rng_seed: 20260907
+
+        message: >
+          Report retention effects separately because the unit is percentage
+          points and the paired distribution is strongly asymmetric.
+
+
+  # --------------------------------------------------------------------
+  # Lunar supplementary failure anatomy
+  # --------------------------------------------------------------------
+
+  lunar_failure_modes:
+    figure_id: LUNAR_SUPP_FAILURE_MODES
+    group: supplementary
+    status: active
+    domain: lunar
+
+    builder: analysis.figures.lunar:build_lunar_failure_modes
+
+    experimental_unit: seed
+
+    panels:
+
+      A:
+        status: active
+        kind: paired_rescue
+
+        sources:
+          - lunar_per_seed
+
+        metrics:
+          - lunar.last5
+
+        pairing: within_seed
+
+        focal_method: Protected
+        comparator_method: Naive
+        reference_method: Uniform
+
+        uncertainty:
+          method: paired_bootstrap_mean
+          confidence: 0.95
+          resamples: 100000
+          rng_seed: 20260907
+
+        message: >
+          Expose the complete seed-level anatomy of Naive late-stage failures
+          and the extent to which Protected rescues each matched seed.
+
+        caveats:
+          - >
+            Every seed must remain visible, including seeds where Protected
+            performs worse than Naive.
+
+
+      B:
+        status: active
+        kind: paired_rescue
+
+        sources:
+          - lunar_per_seed
+
+        metrics:
+          - lunar.retention_pct
+
+        pairing: within_seed
+
+        focal_method: Protected
+        comparator_method: Naive
+        reference_method: Uniform
+
+        uncertainty:
+          method: paired_bootstrap_mean
+          confidence: 0.95
+          resamples: 100000
+          rng_seed: 20260907
+
+        message: >
+          Show the seed-level retention failure distribution and distinguish
+          catastrophic-failure mitigation from uniform improvement.
+
+  # --------------------------------------------------------------------
+  # Crop main
+  # --------------------------------------------------------------------
+
+  crop_main:
+    figure_id: CROP_MAIN
+    group: main
+    status: active
+    domain: crop
+
+    builder: analysis.figures.crop:build_crop_main
+
+    title: >
+      Training dynamics and resource-yield trade-offs
+
+    experimental_unit: seed
+
+    panels:
+
+      A:
+        status: active
+        kind: training_progress
+
+        sources:
+          - crop_baseline_primary_frozen
+          - crop_anchored_primary_frozen
+          - crop_per_seed
+
+        metrics:
+          - crop.block100_return
+
+        pairing: none
+
+        uncertainty:
+          method: bootstrap_mean
+          confidence: 0.95
+          resamples: 100000
+          rng_seed: 20260907
+
+        message: >
+          Show the full 3000-episode learning trajectory and a clearly marked
+          late-stage absolute-performance zoom without hiding the terminal
+          Uniform crossover.
+
+
+      B:
+        status: active
+        kind: seed_resource_yield_delta
+
+        sources:
+          - crop_per_seed
+          - crop_resource_paired
+
+        metrics:
+          - crop.N100
+          - crop.irr100
+          - crop.yield100
+
+        pairing: within_seed
+
+        display_transform:
+          crop.N100: "Uniform - Anchored"
+          crop.irr100: "Uniform - Anchored"
+          crop.yield100: "Anchored - Uniform"
+
+        display_direction: >
+          Positive values indicate a benefit for Anchored.
+
+        message: >
+          Show matched-seed nitrogen and irrigation savings together with the
+          corresponding yield change.
+
+        caveats:
+          - >
+            Resource savings must not be presented without yield outcomes.
+
+
+      C:
+        status: active
+        kind: aligned_outcome_profile
+
+        sources:
+          - crop_per_seed
+
+        metrics:
+          - crop.N100
+          - crop.irr100
+          - crop.yield100
+
+        pairing: none
+
+        uncertainty:
+          method: descriptive
+
+        message: >
+          Show five raw seed observations and the method mean in aligned Yield,
+          Nitrogen, and Irrigation columns, preserving a fixed method row order.
+
+        caveats:
+          - >
+            Yield is higher-is-better; nitrogen and irrigation are
+            lower-is-better. Every column must use its native unnormalized unit.
+          - >
+            Method rows must remain DQN, Dueling, Uniform, Naive, Anchored from
+            top to bottom, and no seed observation may be omitted.
+
+
+  # --------------------------------------------------------------------
+  # Crop reviewer performance decomposition
+  # --------------------------------------------------------------------
+
+  crop_reviewer_performance:
+    figure_id: CROP_REVIEWER_PERFORMANCE
+    group: supplementary
+    status: active
+    domain: crop
+
+    builder: analysis.figures.crop:build_crop_reviewer_performance
+
+    experimental_unit: seed
+
+    panels:
+
+      A:
+        status: active
+        kind: training_progress_overview
+
+        sources:
+          - crop_baseline_primary_frozen
+          - crop_anchored_primary_frozen
+          - crop_per_seed
+
+        metrics:
+          - crop.block100_return
+
+        pairing: none
+
+        uncertainty:
+          method: bootstrap_mean
+          confidence: 0.95
+          resamples: 100000
+          rng_seed: 20260907
+
+        message: >
+          Preserve the complete absolute-return trajectory for all five methods.
+
+
+      B:
+        status: active
+        kind: post_catastrophic_absolute_progress
+
+        sources:
+          - crop_baseline_primary_frozen
+          - crop_anchored_primary_frozen
+          - crop_per_seed
+
+        metrics:
+          - crop.block100_return
+
+        pairing: none
+
+        uncertainty:
+          method: bootstrap_mean
+          confidence: 0.95
+          resamples: 100000
+          rng_seed: 20260907
+
+        message: >
+          Show absolute returns from the fixed Episode 1501 phase boundary,
+          after every aggregate method has exited the catastrophic negative phase.
+
+
+      C:
+        status: active
+        kind: aligned_outcome_profile
+
+        sources:
+          - crop_baseline_primary_frozen
+          - crop_anchored_primary_frozen
+          - crop_per_seed
+
+        metrics:
+          - crop.N100
+          - crop.irr100
+          - crop.yield100
+
+        pairing: none
+
+        uncertainty:
+          method: descriptive
+
+        message: >
+          Complete the reviewer performance view with five raw seed observations
+          and the method mean in aligned Yield, Nitrogen, and Irrigation columns.
+
+        caveats:
+          - >
+            Yield is higher-is-better; nitrogen and irrigation are
+            lower-is-better. Every column must use its native unnormalized unit.
+          - >
+            Method rows must remain DQN, Dueling, Uniform, Naive, Anchored from
+            top to bottom, and no seed observation may be omitted.
+
+
+  # --------------------------------------------------------------------
+  # Crop per-seed performance evidence
+  # --------------------------------------------------------------------
+
+  crop_per_seed_performance:
+    figure_id: CROP_SUPP_PER_SEED
+    group: supplementary
+    status: active
+    domain: crop
+
+    builder: analysis.figures.crop:build_crop_per_seed_performance
+
+    experimental_unit: seed
+
+    panels:
+
+      A:
+        status: active
+        kind: seed_training_progress
+
+        sources:
+          - crop_baseline_primary_frozen
+          - crop_anchored_primary_frozen
+          - crop_per_seed
+
+        metrics:
+          - crop.block100_return
+          - crop.late1000
+          - crop.final100
+
+        pairing: none
+
+        uncertainty:
+          method: descriptive
+
+        message: >
+          Show the complete 3000-episode trajectory and late-stage behavior
+          separately for every primary Crop seed, using a common axis convention
+          so that individual runs can be compared directly.
+
+        caveats:
+          - >
+            All five seeds and all five methods must be shown; seeds may not be
+            selected according to outcome.
+          - >
+            Across-seed bootstrap intervals must not be displayed as uncertainty
+            for a single-seed trajectory.
+          - >
+            Full and late-stage axis ranges must be identical across seed figures.
+
+
+  # --------------------------------------------------------------------
+  # Crop supplementary thresholds
+  # --------------------------------------------------------------------
+
+  crop_thresholds:
+    figure_id: CROP_SUPP_THRESHOLDS
+    group: supplementary
+    status: active
+    domain: crop
+
+    builder: analysis.figures.crop:build_crop_thresholds
+
+    experimental_unit: seed
+
+    panels:
+
+      A:
+        status: active
+        kind: threshold_reach
+
+        sources:
+          - crop_thresholds
+
+        metrics:
+          - crop.T800
+          - crop.T900
+          - crop.T1000
+
+        pairing: none
+
+        uncertainty:
+          method: descriptive
+
+        message: >
+          Report threshold-reaching speed together with the number of seeds
+          that actually reached each threshold.
+
+        caveats:
+          - >
+            Mean reaching episode must never be reported without reached/n.
+
+
+  # --------------------------------------------------------------------
+  # Crop mechanism diagnostics
+  # --------------------------------------------------------------------
+
+  crop_trust_diagnostics:
+    figure_id: CROP_SUPP_TRUST
+    group: supplementary
+    status: active
+    domain: crop
+
+    builder: analysis.figures.crop:build_crop_trust_diagnostics
+
+    experimental_unit: seed
+
+    panels:
+
+      A:
+        status: active
+        kind: mechanism_diagnostic
+
+        sources:
+          - crop_anchored_trust
+
+        metrics: []
+
+        pairing: none
+
+        uncertainty:
+          method: descriptive
+
+        message: >
+          Describe how Anchored trust behavior changes across early,
+          middle, and late learning phases.
+
+        caveats:
+          - >
+            This panel is mechanism evidence and must not be interpreted
+            as a causal performance comparison.
+
+
+  # --------------------------------------------------------------------
+  # HalfCheetah main
+  # --------------------------------------------------------------------
+
+  halfcheetah_main:
+    figure_id: HALFCHEETAH_MAIN
+    group: main
+    status: active
+    domain: halfcheetah
+
+    builder: analysis.figures.halfcheetah:build_halfcheetah_main
+
+    title: >
+      Late-stage adaptive improvement in continuous control
+
+    experimental_unit: seed
+
+    panels:
+
+      A:
+        status: active
+        kind: learning_curve
+
+        sources:
+          - halfcheetah_primary_frozen
+          - halfcheetah_replication_frozen
+
+        metrics:
+          - halfcheetah.at_1p5m
+
+        pairing: none
+
+        uncertainty:
+          method: bootstrap_mean
+          confidence: 0.95
+          resamples: 100000
+          rng_seed: 20260907
+
+        smoothing: false
+
+        message: >
+          Show TD3 and AMAF learning trajectories across the pooled
+          10 matched seeds.
+
+
+      B:
+        status: active
+        kind: paired_transition
+
+        sources:
+          - halfcheetah_per_seed
+
+        metrics:
+          - halfcheetah.at_1m
+          - halfcheetah.at_1p5m
+
+        pairing: within_seed
+
+        uncertainty:
+          method: paired_bootstrap_mean
+          confidence: 0.95
+          resamples: 100000
+          rng_seed: 20260907
+
+        message: >
+          Show the seed-level movement of AMAF minus TD3 from
+          1.0M to 1.5M.
+
+        caveats:
+          - >
+            The primary interpretation is late-stage relative improvement,
+            not large terminal mean superiority.
+
+
+      C:
+        status: active
+        kind: paired_delta
+
+        sources:
+          - halfcheetah_per_seed
+          - halfcheetah_paired
+
+        metrics:
+          - halfcheetah.at_1p5m
+          - halfcheetah.gain_1m_to_1p5m
+
+        pairing: within_seed
+
+        uncertainty:
+          method: paired_bootstrap_mean
+          confidence: 0.95
+          resamples: 100000
+          rng_seed: 20260907
+
+        message: >
+          Compare terminal paired effects with late-stage relative-gain
+          effects.
+
+
+  # --------------------------------------------------------------------
+  # HalfCheetah replication supplementary
+  # --------------------------------------------------------------------
+
+  halfcheetah_replication:
+    figure_id: HALFCHEETAH_SUPP_REPLICATION
+    group: supplementary
+    status: active
+    domain: halfcheetah
+
+    builder: analysis.figures.halfcheetah:build_replication_summary
+
+    experimental_unit: seed
+
+    panels:
+
+      A:
+        status: active
+        kind: cohort_comparison
+
+        sources:
+          - halfcheetah_cohort
+
+        metrics:
+          - halfcheetah.at_1p5m
+          - halfcheetah.gain_1m_to_1p5m
+
+        pairing: within_seed
+
+        uncertainty:
+          method: descriptive
+
+        message: >
+          Report original-five, independent-extra-five, and pooled-ten
+          paired effects separately.
+
+
+  # --------------------------------------------------------------------
+  # SAC completed-baseline diagnostic
+  # --------------------------------------------------------------------
+
+  sac_live_progress:
+    figure_id: SAC_LIVE_PROGRESS
+    group: draft_live
+    status: draft
+    domain: halfcheetah
+
+    builder: analysis.figures.sac:build_live_progress
+
+    experimental_unit: seed
+
+    panels:
+
+      A:
+        status: draft
+        kind: live_learning_curve
+
+        sources:
+          - halfcheetah_sac_primary5
+
+        metrics: []
+
+        pairing: none
+
+        uncertainty:
+          method: descriptive
+
+        message: >
+          Diagnostic view of the completed SAC primary-5 baseline.
+
+        caveats:
+          - >
+            This legacy draft slot is retained for diagnostic continuity;
+            manuscript rendering will be rebuilt from frozen/canonical SAC data.

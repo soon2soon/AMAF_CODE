@@ -1,0 +1,51 @@
+runner: crop
+device: auto
+deterministic_torch: false
+gamma: 0.99
+optimizer:
+  lr: 0.00001
+  betas: [0.9, 0.999]
+  weight_decay: 0.0
+replay:
+  capacity: 100000
+  batch_size: 512
+update_every: 16
+target_update_every: 128
+gradient_clip_value: 1.0
+epsilon:
+  start: 1.0
+  end: 0.01
+  decay: 0.9985
+training:
+  max_episodes: 3000
+  max_steps_per_episode: 500
+environment:
+  name: gym_dssat_pdi:GymDssatPdi-v0
+  seed_mode: fixed
+  seed_base: 123456
+  kwargs:
+    run_dssat_location: /opt/dssat_pdi/run_dssat
+    mode: all
+    seed: 123456
+    random_weather: true
+reward_weights:
+  k1: 0.158
+  k2: 0.79
+  k3: 1.1
+  k4: 0.0
+network:
+  fc1: 512
+  fc2: 256
+  encoder:
+    model_name: distilbert-base-uncased
+    token_size: 27
+    representation: flatten
+    trainable: true
+logging:
+  train_interval_updates: 20
+  diagnostic_interval_episodes: 25
+checkpoint_interval_episodes: 250
+
+target_mode: dqn
+share_target_encoder: true
+terminal_repeat: 8

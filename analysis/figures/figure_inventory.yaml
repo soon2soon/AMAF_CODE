@@ -1,0 +1,566 @@
+schema_version: 1
+inventory_version: "2026-09-07-v1"
+
+project:
+  name: AMAF
+  purpose: >
+    Master inventory of manuscript, supplementary, robustness,
+    mechanism, reviewer-response, and diagnostic figures.
+
+vocabulary:
+
+  statuses:
+    - active
+    - planned
+    - blocked
+    - draft_live
+    - retired
+
+  roles:
+    - main
+    - supplementary
+    - robustness
+    - mechanism
+    - reviewer_response
+    - diagnostic
+    - conceptual
+
+  priorities:
+    - P0
+    - P1
+    - P2
+    - P3
+
+  readiness:
+    - ready
+    - derivable
+    - verify_data
+    - live
+    - blocked
+
+
+figures:
+
+  # ====================================================================
+  # CONCEPT / ARCHITECTURE
+  # ====================================================================
+
+  amaf_architecture:
+    figure_id: CONCEPT_AMAF_ARCHITECTURE
+    domain: concept
+    role: conceptual
+    manuscript_target: main
+    status: planned
+    priority: P0
+    readiness: ready
+    contract_key: null
+    requires_new_experiment: false
+    title: >
+      AMAF architecture: reference-preserving adaptive specialization
+    purpose: >
+      Explain multiple advantage specialists, the stable reference path,
+      and state-conditioned adaptive fusion.
+
+  reference_specialization_concept:
+    figure_id: CONCEPT_REFERENCE_SPECIALIZATION
+    domain: concept
+    role: conceptual
+    manuscript_target: main
+    status: planned
+    priority: P1
+    readiness: ready
+    contract_key: null
+    requires_new_experiment: false
+    title: >
+      Why adaptive specialization needs a protected reference
+    purpose: >
+      Intuitively contrast stable reference behavior, naive adaptation,
+      and protected specialization.
+
+
+  # ====================================================================
+  # LUNAR
+  # ====================================================================
+
+  lunar_main:
+    figure_id: LUNAR_MAIN
+    domain: lunar
+    role: main
+    manuscript_target: main
+    status: active
+    priority: P0
+    readiness: ready
+    contract_key: lunar_main
+    requires_new_experiment: false
+    title: >
+      Failure mitigation while preserving reference-level performance
+
+  lunar_paired_effects:
+    figure_id: LUNAR_SUPP_EFFECTS
+    domain: lunar
+    role: supplementary
+    manuscript_target: supplementary
+    status: active
+    priority: P1
+    readiness: ready
+    contract_key: lunar_paired_effects
+    requires_new_experiment: false
+
+  lunar_failure_modes:
+    figure_id: LUNAR_SUPP_FAILURE_MODES
+    domain: lunar
+    role: robustness
+    manuscript_target: supplementary
+    status: active
+    priority: P0
+    readiness: ready
+    contract_key: lunar_failure_modes
+    requires_new_experiment: false
+    purpose: >
+      Expose complete seed-level Naive failures and Protected rescue.
+
+  lunar_all_seed_curves:
+    figure_id: LUNAR_SUPP_ALL_SEED_CURVES
+    domain: lunar
+    role: robustness
+    manuscript_target: supplementary
+    status: planned
+    priority: P1
+    readiness: derivable
+    contract_key: null
+    requires_new_experiment: false
+    purpose: >
+      Display individual learning curves for every method and every seed.
+
+  lunar_failure_tail:
+    figure_id: LUNAR_SUPP_FAILURE_TAIL
+    domain: lunar
+    role: robustness
+    manuscript_target: supplementary
+    status: planned
+    priority: P0
+    readiness: derivable
+    contract_key: null
+    requires_new_experiment: false
+    purpose: >
+      Visualize the heavy negative late-stage tail introduced by Naive
+      adaptive specialization.
+
+  lunar_reference_gap_recovery:
+    figure_id: LUNAR_SUPP_REFERENCE_GAP_RECOVERY
+    domain: lunar
+    role: robustness
+    manuscript_target: supplementary
+    status: planned
+    priority: P1
+    readiness: derivable
+    contract_key: null
+    requires_new_experiment: false
+    purpose: >
+      Quantify descriptive recovery of the Uniform-to-Naive performance gap
+      by Protected AMAF.
+
+  lunar_metric_profile:
+    figure_id: LUNAR_SUPP_METRIC_PROFILE
+    domain: lunar
+    role: supplementary
+    manuscript_target: supplementary
+    status: planned
+    priority: P2
+    readiness: ready
+    contract_key: null
+    requires_new_experiment: false
+    purpose: >
+      Compare Final, Last-5, AUC, Best-5, and Retention across methods.
+
+  lunar_rank_profile:
+    figure_id: LUNAR_SUPP_RANK_PROFILE
+    domain: lunar
+    role: diagnostic
+    manuscript_target: supplementary
+    status: planned
+    priority: P3
+    readiness: derivable
+    contract_key: null
+    requires_new_experiment: false
+    purpose: >
+      Show how method ranking changes across evaluation criteria.
+
+
+  # ====================================================================
+  # CROP
+  # ====================================================================
+
+  crop_main:
+    figure_id: CROP_MAIN
+    domain: crop
+    role: main
+    manuscript_target: main
+    status: active
+    priority: P0
+    readiness: ready
+    contract_key: crop_main
+    requires_new_experiment: false
+
+  crop_thresholds:
+    figure_id: CROP_SUPP_THRESHOLDS
+    domain: crop
+    role: supplementary
+    manuscript_target: supplementary
+    status: active
+    priority: P1
+    readiness: ready
+    contract_key: crop_thresholds
+    requires_new_experiment: false
+
+  crop_trust_diagnostics:
+    figure_id: CROP_SUPP_TRUST
+    domain: crop
+    role: mechanism
+    manuscript_target: supplementary
+    status: active
+    priority: P1
+    readiness: ready
+    contract_key: crop_trust_diagnostics
+    requires_new_experiment: false
+
+  crop_all_seed_curves:
+    figure_id: CROP_SUPP_ALL_SEED_CURVES
+    domain: crop
+    role: robustness
+    manuscript_target: supplementary
+    status: planned
+    priority: P1
+    readiness: derivable
+    contract_key: null
+    requires_new_experiment: false
+
+  crop_horizon_profile:
+    figure_id: CROP_SUPP_HORIZON_PROFILE
+    domain: crop
+    role: robustness
+    manuscript_target: supplementary
+    status: planned
+    priority: P0
+    readiness: ready
+    contract_key: null
+    requires_new_experiment: false
+    purpose: >
+      Show Early, Mid, Late, and Final performance jointly instead of
+      relying on one terminal summary.
+
+  crop_resource_pairs:
+    figure_id: CROP_SUPP_RESOURCE_PAIRS
+    domain: crop
+    role: robustness
+    manuscript_target: supplementary
+    status: planned
+    priority: P0
+    readiness: ready
+    contract_key: null
+    requires_new_experiment: false
+    purpose: >
+      Show matched-seed nitrogen and irrigation savings separately.
+
+  crop_yield_resource_tradeoff:
+    figure_id: CROP_SUPP_YIELD_RESOURCE_TRADEOFF
+    domain: crop
+    role: robustness
+    manuscript_target: supplementary
+    status: planned
+    priority: P0
+    readiness: ready
+    contract_key: null
+    requires_new_experiment: false
+    purpose: >
+      Jointly expose resource savings and terminal yield trade-offs.
+
+  crop_resource_efficiency:
+    figure_id: CROP_SUPP_RESOURCE_EFFICIENCY
+    domain: crop
+    role: supplementary
+    manuscript_target: supplementary
+    status: planned
+    priority: P1
+    readiness: derivable
+    contract_key: null
+    requires_new_experiment: false
+    purpose: >
+      Derive transparent yield-to-resource efficiency measures such as
+      yield per nitrogen and yield per irrigation.
+
+  crop_threshold_reachability:
+    figure_id: CROP_SUPP_THRESHOLD_REACHABILITY
+    domain: crop
+    role: robustness
+    manuscript_target: supplementary
+    status: planned
+    priority: P2
+    readiness: ready
+    contract_key: null
+    requires_new_experiment: false
+    purpose: >
+      Separate time-to-threshold from the fraction of seeds reaching each
+      threshold.
+
+
+  # ====================================================================
+  # HALFCHEETAH
+  # ====================================================================
+
+  halfcheetah_main:
+    figure_id: HALFCHEETAH_MAIN
+    domain: halfcheetah
+    role: main
+    manuscript_target: main
+    status: active
+    priority: P0
+    readiness: ready
+    contract_key: halfcheetah_main
+    requires_new_experiment: false
+
+  halfcheetah_replication:
+    figure_id: HALFCHEETAH_SUPP_REPLICATION
+    domain: halfcheetah
+    role: robustness
+    manuscript_target: supplementary
+    status: active
+    priority: P0
+    readiness: ready
+    contract_key: halfcheetah_replication
+    requires_new_experiment: false
+
+  halfcheetah_all_seed_curves:
+    figure_id: HALFCHEETAH_SUPP_ALL_SEED_CURVES
+    domain: halfcheetah
+    role: robustness
+    manuscript_target: supplementary
+    status: planned
+    priority: P0
+    readiness: derivable
+    contract_key: null
+    requires_new_experiment: false
+
+  halfcheetah_terminal_delta:
+    figure_id: HALFCHEETAH_SUPP_TERMINAL_DELTA
+    domain: halfcheetah
+    role: robustness
+    manuscript_target: supplementary
+    status: planned
+    priority: P1
+    readiness: ready
+    contract_key: null
+    requires_new_experiment: false
+
+  halfcheetah_gain_delta:
+    figure_id: HALFCHEETAH_SUPP_GAIN_DELTA
+    domain: halfcheetah
+    role: robustness
+    manuscript_target: supplementary
+    status: planned
+    priority: P0
+    readiness: ready
+    contract_key: null
+    requires_new_experiment: false
+    purpose: >
+      Show the seed-wise AMAF-versus-TD3 advantage in 1M-to-1.5M
+      late-stage relative gain.
+
+  halfcheetah_leave_one_out:
+    figure_id: HALFCHEETAH_SUPP_LEAVE_ONE_OUT
+    domain: halfcheetah
+    role: robustness
+    manuscript_target: supplementary
+    status: planned
+    priority: P0
+    readiness: ready
+    contract_key: null
+    requires_new_experiment: false
+    purpose: >
+      Demonstrate sensitivity of terminal and gain effects to removing
+      individual seeds.
+
+  halfcheetah_metric_profile:
+    figure_id: HALFCHEETAH_SUPP_METRIC_PROFILE
+    domain: halfcheetah
+    role: robustness
+    manuscript_target: supplementary
+    status: planned
+    priority: P1
+    readiness: ready
+    contract_key: null
+    requires_new_experiment: false
+    purpose: >
+      Compare Terminal, Last-5, Last-10, AUC, and relative-gain effects.
+
+  halfcheetah_cohort_shift:
+    figure_id: HALFCHEETAH_SUPP_COHORT_SHIFT
+    domain: halfcheetah
+    role: robustness
+    manuscript_target: supplementary
+    status: planned
+    priority: P0
+    readiness: ready
+    contract_key: null
+    requires_new_experiment: false
+    purpose: >
+      Show the 1M-to-1.5M AMAF-minus-TD3 shift independently in the
+      original-five and replication-five cohorts.
+
+  halfcheetah_bootstrap_distribution:
+    figure_id: HALFCHEETAH_SUPP_BOOTSTRAP
+    domain: halfcheetah
+    role: robustness
+    manuscript_target: supplementary
+    status: planned
+    priority: P2
+    readiness: derivable
+    contract_key: null
+    requires_new_experiment: false
+
+  halfcheetah_seed77_anatomy:
+    figure_id: HALFCHEETAH_SUPP_SEED77_ANATOMY
+    domain: halfcheetah
+    role: diagnostic
+    manuscript_target: supplementary
+    status: planned
+    priority: P2
+    readiness: derivable
+    contract_key: null
+    requires_new_experiment: false
+    purpose: >
+      Inspect the genuine adverse AMAF run without excluding it from any
+      aggregate analysis.
+
+
+  # ====================================================================
+  # CROSS-DOMAIN
+  # ====================================================================
+
+  cross_domain_summary:
+    figure_id: CROSS_DOMAIN_SUMMARY
+    domain: cross_domain
+    role: main
+    manuscript_target: main
+    status: planned
+    priority: P1
+    readiness: derivable
+    contract_key: null
+    requires_new_experiment: false
+    purpose: >
+      Synthesize the distinct AMAF effects across Lunar, Crop, and
+      HalfCheetah without forcing metrics onto a common numeric scale.
+
+  amaf_effect_map:
+    figure_id: CROSS_DOMAIN_EFFECT_MAP
+    domain: cross_domain
+    role: conceptual
+    manuscript_target: main
+    status: planned
+    priority: P2
+    readiness: derivable
+    contract_key: null
+    requires_new_experiment: false
+    purpose: >
+      Map observed evidence to stability preservation, adaptive improvement,
+      resource-aware behavior, and trade-offs.
+
+
+  # ====================================================================
+  # SAC
+  # ====================================================================
+
+  sac_live_progress:
+    figure_id: SAC_LIVE_PROGRESS
+    domain: halfcheetah
+    role: diagnostic
+    manuscript_target: none
+    status: draft_live
+    priority: P1
+    readiness: live
+    contract_key: sac_live_progress
+    requires_new_experiment: false
+    purpose: >
+      Monitor the currently running five-seed SAC baseline.
+
+  sac_final_baseline:
+    figure_id: SAC_FINAL_BASELINE
+    domain: halfcheetah
+    role: main
+    manuscript_target: main_candidate
+    status: blocked
+    priority: P0
+    readiness: blocked
+    contract_key: null
+    requires_new_experiment: false
+    unblock_condition: >
+      All five SAC seeds complete at 1.5M, pass validation, are frozen,
+      and are canonically integrated.
+
+  sac_seed_curves:
+    figure_id: SAC_SUPP_SEED_CURVES
+    domain: halfcheetah
+    role: robustness
+    manuscript_target: supplementary
+    status: blocked
+    priority: P1
+    readiness: blocked
+    contract_key: null
+    requires_new_experiment: false
+    unblock_condition: >
+      SAC five-seed frozen dataset becomes available.
+
+
+  # ====================================================================
+  # MECHANISM
+  # ====================================================================
+
+  gate_specialization:
+    figure_id: MECH_GATE_SPECIALIZATION
+    domain: mechanism
+    role: mechanism
+    manuscript_target: main_candidate
+    status: planned
+    priority: P0
+    readiness: verify_data
+    contract_key: null
+    requires_new_experiment: false
+    purpose: >
+      Determine whether different AMAF specialists are selected in
+      state-dependent ways.
+
+  gate_entropy:
+    figure_id: MECH_GATE_ENTROPY
+    domain: mechanism
+    role: mechanism
+    manuscript_target: supplementary
+    status: planned
+    priority: P1
+    readiness: verify_data
+    contract_key: null
+    requires_new_experiment: false
+
+  head_disagreement:
+    figure_id: MECH_HEAD_DISAGREEMENT
+    domain: mechanism
+    role: mechanism
+    manuscript_target: supplementary
+    status: planned
+    priority: P1
+    readiness: verify_data
+    contract_key: null
+    requires_new_experiment: false
+
+  reference_correction_ratio:
+    figure_id: MECH_REFERENCE_CORRECTION_RATIO
+    domain: mechanism
+    role: mechanism
+    manuscript_target: main_candidate
+    status: planned
+    priority: P0
+    readiness: verify_data
+    contract_key: null
+    requires_new_experiment: false
+    purpose: >
+      Quantify the scale of adaptive corrections relative to the protected
+      reference contribution.

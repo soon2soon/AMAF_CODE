@@ -1,0 +1,4 @@
+base: amaf_dqn.yaml
+network:
+  n_heads: 4
+  gate_mode: uniform
